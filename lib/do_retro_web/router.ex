@@ -17,12 +17,6 @@ defmodule DoRetroWeb.Router do
     plug :accepts, ["json"]
   end
 
-  scope "/", DoRetroWeb do
-    pipe_through :browser
-
-    get "/", PageController, :index
-  end
-
   # Other scopes may use custom stacks.
   # scope "/api", DoRetroWeb do
   #   pipe_through :api
@@ -78,6 +72,8 @@ defmodule DoRetroWeb.Router do
     get "/users/settings", UserSettingsController, :edit
     put "/users/settings", UserSettingsController, :update
     get "/users/settings/confirm_email/:token", UserSettingsController, :confirm_email
+
+    get "/", PageController, :index
   end
 
   scope "/", DoRetroWeb do
