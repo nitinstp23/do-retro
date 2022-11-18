@@ -1,5 +1,9 @@
 /* This file is for your main application CSS */
-@import "./phoenix.css";
+@import "../node_modules/bootstrap/scss/bootstrap";
+
+.color-white {
+  color: $white;
+}
 
 /* Alerts and form errors used by phx.new */
 .alert {

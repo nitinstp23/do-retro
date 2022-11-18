@@ -26,7 +26,12 @@ config :do_retro, DoRetroWeb.Endpoint,
   secret_key_base: "Gq06JNXpRrhoqzeppesYguVjt8CjmwSOCEjNraYG2Rq72ov3cD0Km4SIATW4VBZe",
   watchers: [
     # Start the esbuild watcher by calling Esbuild.install_and_run(:default, args)
-    esbuild: {Esbuild, :install_and_run, [:default, ~w(--sourcemap=inline --watch)]}
+    esbuild: {Esbuild, :install_and_run, [:default, ~w(--sourcemap=inline --watch)]},
+    sass: {
+      DartSass,
+      :install_and_run,
+      [:default, ~w(--embed-source-map --source-map-urls=absolute --watch)]
+    }
   ]
 
 # ## SSL Support

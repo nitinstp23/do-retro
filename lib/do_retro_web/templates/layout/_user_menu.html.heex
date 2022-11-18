@@ -1,10 +1,29 @@
-<ul>
-<%= if @current_user do %>
-  <li><%= @current_user.email %></li>
-  <li><%= link "Settings", to: Routes.user_settings_path(@conn, :edit) %></li>
-  <li><%= link "Log out", to: Routes.user_session_path(@conn, :delete), method: :delete %></li>
-<% else %>
-  <li><%= link "Register", to: Routes.user_registration_path(@conn, :new) %></li>
-  <li><%= link "Log in", to: Routes.user_session_path(@conn, :new) %></li>
-<% end %>
+<ul class="navbar-nav me-auto mb-2 mb-md-0">
+  <%= if @current_user do %>
+    <li class="nav-item dropdown">
+      <a class="nav-link dropdown-toggle color-white" href="#" id="dropdown01" data-bs-toggle="dropdown" aria-expanded="false">
+        Hello! <%= String.split(@current_user.email, "@") |> List.first() %>
+      </a>
+      <ul class="dropdown-menu" aria-labelledby="dropdown01">
+        <li>
+          <a class="dropdown-item disabled" href="#">Profile</a>
+        </li>
+        <li>
+          <%= link "Settings", to: Routes.user_settings_path(@conn, :edit), class: "dropdown-item" %>
+        </li>
+      </ul>
+    </li>
+
+    <li class="nav-item">
+      <%= link "Log out", to: Routes.user_session_path(@conn, :delete), method: :delete, class: "nav-link" %>
+    </li>
+  <% else %>
+    <li class="nav-item">
+      <%= link "Register", to: Routes.user_registration_path(@conn, :new), class: "nav-link" %>
+    </li>
+
+    <li class="nav-item">
+      <%= link "Log in", to: Routes.user_session_path(@conn, :new), class: "nav-link" %>
+    </li>
+  <% end %>
 </ul>
