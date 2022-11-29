@@ -1,5 +1,15 @@
-<main class="container">
-  <p class="alert alert-info" role="alert"><%= get_flash(@conn, :info) %></p>
-  <p class="alert alert-danger" role="alert"><%= get_flash(@conn, :error) %></p>
-  <%= @inner_content %>
-</main>
+<%= if get_flash(@conn, :info) != nil do %>
+  <div class="alert alert-info alert-dismissible" role="alert">
+    <%= get_flash(@conn, :info) %>
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  </div>
+<% end %>
+
+<%= if get_flash(@conn, :error) != nil do %>
+  <div class="alert alert-danger alert-dismissible" role="alert">
+    <%= get_flash(@conn, :error) %>
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  </div>
+<% end %>
+
+<%= @inner_content %>

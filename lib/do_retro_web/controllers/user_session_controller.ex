@@ -15,7 +15,11 @@ defmodule DoRetroWeb.UserSessionController do
       UserAuth.log_in_user(conn, user, user_params)
     else
       # In order to prevent user enumeration attacks, don't disclose whether the email is registered.
-      render(conn, "new.html", error_message: "Invalid email or password")
+      error_message = "Invalid email or password"
+
+      conn
+      |> put_flash(:error, error_message)
+      |> render("new.html", error_message: error_message)
     end
   end
 

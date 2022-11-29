@@ -1,6 +1,10 @@
 /* This file is for your main application CSS */
 @import "../node_modules/bootstrap/scss/bootstrap";
 
+html, body, .container {
+  height: 100%;
+}
+
 .color-white {
   color: $white;
 }
