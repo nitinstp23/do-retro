@@ -10,11 +10,25 @@ defmodule DoRetroWeb.ErrorHelpers do
   """
   def error_tag(form, field) do
     Enum.map(Keyword.get_values(form.errors, field), fn error ->
-      content_tag(:span, translate_error(error),
-        class: "invalid-feedback",
+      content_tag(:div, translate_error(error),
+        class: "invalid-feedback pt-3",
         phx_feedback_for: input_name(form, field)
       )
     end)
+  end
+
+  @doc """
+  Generates CSS class for form input error
+  """
+  def error_class(form, field) do
+    Keyword.get_values(form.errors, field)
+    |> case do
+      [{_msg, _validation} | _] ->
+        "is-invalid"
+
+      _ ->
+        nil
+    end
   end
 
   @doc """
