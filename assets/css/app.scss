@@ -1,12 +1,17 @@
 /* This file is for your main application CSS */
 @import "../node_modules/bootstrap/scss/bootstrap";
 
-html, body, .container {
+html, body, .container-xxl {
   height: 100%;
 }
 
 .color-white {
   color: $white;
+}
+
+.bd-navbar {
+  background-color: #dd6706;
+  box-shadow: 0 0.5rem 1rem rgb(0 0 0 / 15%), inset 0 -1px 0 rgb(0 0 0 / 15%);  
 }
 
 /* Alerts and form errors used by phx.new */
