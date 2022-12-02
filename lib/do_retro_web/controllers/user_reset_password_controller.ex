@@ -10,19 +10,29 @@ defmodule DoRetroWeb.UserResetPasswordController do
   end
 
   def create(conn, %{"user" => %{"email" => email}}) do
-    if user = Accounts.get_user_by_email(email) do
-      Accounts.deliver_user_reset_password_instructions(
-        user,
-        &Routes.user_reset_password_url(conn, :edit, &1)
-      )
-    end
+    Accounts.get_user_by_email(email)
+    |> case do
+      nil ->
+        conn
+        |> put_flash(
+          :error,
+          "User not found with email {#{email}}, please enter your registered email address."
+        )
+        |> render("new.html")
 
-    conn
-    |> put_flash(
-      :info,
-      "If your email is in our system, you will receive instructions to reset your password shortly."
-    )
-    |> redirect(to: "/")
+      user ->
+        Accounts.deliver_user_reset_password_instructions(
+          user,
+          &Routes.user_reset_password_url(conn, :edit, &1)
+        )
+
+        conn
+        |> put_flash(
+          :info,
+          "If your email is in our system, you will receive instructions to reset your password shortly."
+        )
+        |> redirect(to: "/")
+    end
   end
 
   def edit(conn, _params) do
