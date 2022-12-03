@@ -9,12 +9,22 @@ defmodule DoRetroWeb.ErrorHelpers do
   Generates tag for inlined form input errors.
   """
   def error_tag(form, field) do
-    Enum.map(Keyword.get_values(form.errors, field), fn error ->
-      content_tag(:div, translate_error(error),
-        class: "invalid-feedback pt-3",
-        phx_feedback_for: input_name(form, field)
-      )
-    end)
+    Keyword.get_values(form.errors, field)
+    |> case do
+      errors = [{_msg, _validation} | _] ->
+        error_divs =
+          Enum.map(errors, fn error ->
+            content_tag(:div, translate_error(error),
+              class: "invalid-feedback",
+              phx_feedback_for: input_name(form, field)
+            )
+          end)
+
+        content_tag(:div, error_divs, class: "pt-3")
+
+      _ ->
+        nil
+    end
   end
 
   @doc """
