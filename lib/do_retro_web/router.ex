@@ -73,7 +73,11 @@ defmodule DoRetroWeb.Router do
     put "/users/settings", UserSettingsController, :update
     get "/users/settings/confirm_email/:token", UserSettingsController, :confirm_email
 
-    get "/", PageController, :index
+    get "/", BoardController, :index
+
+    get "/boards/new", BoardController, :new
+    get "/boards", BoardController, :index
+    post "/boards", BoardController, :create
   end
 
   scope "/", DoRetroWeb do

@@ -1,0 +1,33 @@
+<div class="col-lg-12 col-md-8 pt-4">
+  <h3>My Boards</h3>
+  <hr />
+</div>
+
+<div class="row g-5 pt-4">
+  <div class="col-lg-4 col-md-3">
+    <div class="card text-center">
+      <%= link "", to: Routes.board_path(@conn, :new), class: "bi bi-plus-circle-fill add-new-board" %>
+      <div class="card-body">
+        Add New Board
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row g-5 pt-4">
+  <%= for board <- @boards do %>
+    <div class="col-lg-4 col-md-3">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title"><%= board.name %></h5>
+          <h6 class="card-subtitle mb-2 text-muted">
+            <%= Timex.format!(board.inserted_at, "%d %b %Y", :strftime) %>
+          </h6>
+          <p class="card-text">Board content goes here...</p>
+          <a href="#" class="card-link">Edit Board</a>
+          <a href="#" class="card-link">Delete Board</a>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>

@@ -6,7 +6,7 @@ defmodule DoRetro.Boards.Board do
     field :disable_voting, :boolean, default: false
     field :hide_cards, :boolean, default: false
     field :hide_vote_count, :boolean, default: false
-    field :max_votes_per_user, :integer
+    field :max_votes_per_user, :integer, default: 5
     field :name, :string
     field :owner_id, :id
 

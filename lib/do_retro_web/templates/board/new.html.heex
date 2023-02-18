@@ -1,0 +1,38 @@
+<div class="row h-100 align-items-center justify-content-center">
+  <div class="col-sm-8 col-md-6 col-lg-4 bg-white rounded p-4 shadow">
+    <h4 class="mb-4">Create Board</h4>
+
+    <.form let={f} for={@changeset} action={Routes.board_path(@conn, :create)} novalidate>
+      <div class="mb-4">
+        <%= label f, :name, "Name", class: "form-label" %>
+        <%= text_input f, :name, required: true, class: "form-control #{error_class(f, :name)}" %>
+        <%= error_tag f, :name %>
+      </div>
+
+      <div class="mb-4">
+        <%= label f, :max_votes_per_user, "Max votes per user", class: "form-label" %>
+        <%= number_input f, :max_votes_per_user, min: 0, max: 100, required: true, class: "form-control #{error_class(f, :max_votes_per_user)}" %>
+        <%= error_tag f, :max_votes_per_user %>
+      </div>
+
+      <div class="mb-3">
+        <%= checkbox f, :disable_voting, class: "form-check-input" %>
+        <%= label f, :disable_voting, "Disable voting initially", class: "form-label" %>
+      </div>
+
+      <div class="mb-3">
+        <%= checkbox f, :hide_cards, class: "form-check-input" %>
+        <%= label f, :hide_cards, "Hide cards initially", class: "form-label" %>
+      </div>
+
+      <div class="mb-3">
+        <%= checkbox f, :hide_vote_count, class: "form-check-input" %>
+        <%= label f, :hide_vote_count, "Hide vote count", class: "form-label" %>
+      </div>
+
+      <div class="mb-4">
+        <%= submit "Create", class: "btn btn-primary w-100" %>
+      </div>
+    </.form>
+  </div>
+</div>

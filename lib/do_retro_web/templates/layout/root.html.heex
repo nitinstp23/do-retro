@@ -5,18 +5,18 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <meta name="csrf-token" content={csrf_token_value()}>
-    <%= live_title_tag assigns[:page_title] || "DoRetro", suffix: "" %>
+    <%= live_title_tag assigns[:page_title] || "doRetro", suffix: "" %>
     <link phx-track-static rel="stylesheet" href={Routes.static_path(@conn, "/assets/app.css")}/>
     <script defer phx-track-static type="text/javascript" src={Routes.static_path(@conn, "/assets/app.js")}></script>
   </head>
   <body>
   <header class="navbar navbar-expand-lg navbar-dark bd-navbar sticky-top">
     <nav class="container gx-5 flex-wrap flex-lg-nowrap">
-      <a class="navbar-brand" href="#">DoRetro</a>
+      <a class="navbar-brand" href="#">doRetro</a>
       <div class="collapse navbar-collapse">
         <ul class="navbar-nav me-auto mb-2 mb-md-0">
           <li class="nav-item">
-            <%= link "Home", to: Routes.page_path(@conn, :index), class: "nav-link" %>
+            <%= link "Home", to: Routes.board_path(@conn, :index), class: "nav-link" %>
           </li>
         </ul>
         <div class="d-flex">
